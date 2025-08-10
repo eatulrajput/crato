@@ -2,6 +2,7 @@ import heroImg from "@/assets/hero-crato.jpg";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import VoiceDemo from "@/components/VoiceDemo";
 import {
   Dialog,
   DialogContent,
@@ -17,8 +18,7 @@ const Nav = () => (
   <header className="w-full border-b border-border/60 bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/70 sticky top-0 z-40">
     <nav className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
       <a href="#home" className="flex items-center gap-2">
-        <div aria-hidden className="size-6 rounded-md bg-accent" />
-        <span className="font-semibold tracking-tight">Crato</span>
+        <span className="text-3xl font-semibold tracking-tight">Crato</span>
       </a>
       <div className="hidden sm:flex items-center gap-4 text-sm">
         <a href="#how" className="story-link">How it works</a>
@@ -43,7 +43,7 @@ const Hero = () => (
           Crato is a voice-first AI coach that adapts to your fatigue, sleep, and performance — giving short, specific cues as you run.
         </p>
         <div className="flex flex-col sm:flex-row gap-3">
-          <a href="#demo"><Button variant="hero" size="lg" className="hover-scale">Try the demo</Button></a>
+          <a href="#demo"><Button variant="outline" size="lg" className="hover-scale">Try the demo</Button></a>
           <a href="#waitlist"><Button variant="outline" size="lg" className="hover-scale">Join waitlist</Button></a>
         </div>
         <ul className="text-sm text-muted-foreground grid grid-cols-2 gap-y-2 max-w-md">
@@ -128,37 +128,15 @@ const Features = () => (
 const Demo = () => (
   <section id="demo" className="mx-auto max-w-6xl px-4 pb-12 sm:pb-16">
     <header className="mb-6">
-      <h2 className="text-2xl font-semibold">Watch a short demo</h2>
-      <p className="text-sm text-muted-foreground">60–120s walk-through of Crato in action.</p>
+      <h2 className="text-2xl font-semibold">Talk to Crato</h2>
+      <p className="text-sm text-muted-foreground">
+        Real-time voice demo powered by ElevenLabs. Ask Crato coaching questions live.
+      </p>
     </header>
-    <Dialog>
-      <DialogTrigger asChild>
-        <button className="w-full overflow-hidden rounded-xl border bg-card/60 hover-scale shadow-elevated">
-          <div className="relative">
-            <img src={heroImg} alt="Crato demo poster" loading="lazy" className="w-full h-auto" />
-            <div className="absolute inset-0 bg-gradient-to-t from-background/40 to-transparent" />
-            <div className="absolute inset-0 grid place-items-center">
-              <div className="px-4 py-2 rounded-full bg-accent text-accent-foreground font-medium shadow-glow">Play demo</div>
-            </div>
-          </div>
-        </button>
-      </DialogTrigger>
-      <DialogContent className="max-w-3xl">
-        <DialogHeader>
-          <DialogTitle>Crato demo preview</DialogTitle>
-        </DialogHeader>
-        <div className="rounded-lg overflow-hidden border">
-          <div className="bg-hero min-h-[220px] sm:min-h-[360px] grid place-items-center text-primary-foreground">
-            <div className="text-center px-6 py-10">
-              <p className="font-display text-2xl mb-3">“Relax your shoulders. Cadence steady. Nice work.”</p>
-              <p className="text-sm opacity-90">This preview simulates the voice demo. Full video coming soon.</p>
-            </div>
-          </div>
-        </div>
-      </DialogContent>
-    </Dialog>
+    <VoiceDemo />
   </section>
 );
+
 
 const Waitlist = () => {
   const [email, setEmail] = useState("");
