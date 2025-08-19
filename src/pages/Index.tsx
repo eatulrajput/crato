@@ -10,6 +10,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { Bot, Camera, Mic, ShieldCheck, Watch, Zap } from "lucide-react";
 import { toast } from "sonner";
 import { useState, useEffect } from "react";
@@ -25,9 +26,12 @@ const Nav = () => (
         <a href="#features" className="story-link">Features</a>
         <a href="#demo" className="story-link">Demo</a>
       </div>
-      <a href="#waitlist" className="ml-3">
-        <Button variant="accent" size="sm" className="hover-scale">Join waitlist</Button>
-      </a>
+      <div className="flex items-center gap-3">
+        <ThemeToggle />
+        <a href="#waitlist">
+          <Button variant="accent" size="sm" className="hover-scale">Join waitlist</Button>
+        </a>
+      </div>
     </nav>
   </header>
 );
