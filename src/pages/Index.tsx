@@ -43,6 +43,16 @@ const Hero = () => {
 
   return (
     <section id="home" className="relative parallax-container mx-auto max-w-6xl px-4 pt-10 pb-12 sm:pt-16 sm:pb-16 min-h-[90vh] flex items-center">
+      {/* Hero Background Image */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20"
+        style={{ 
+          backgroundImage: `url(${heroImg})`,
+          transform: `translateY(${scrollY * 0.2}px) scale(${1 + scrollY * 0.0005})`
+        }}
+      />
+      <div className="absolute inset-0 bg-gradient-to-br from-background/80 via-background/60 to-background/80" />
+      
       {/* Parallax Background Elements */}
       <div 
         className="parallax-bg"
@@ -61,45 +71,28 @@ const Hero = () => {
         style={{ transform: `translateY(${scrollY * 0.4}px)` }}
       />
 
-      <div className="relative z-10 grid md:grid-cols-2 gap-8 items-center w-full">
+      <div className="relative z-10 w-full">
         <div 
-          className="space-y-6 animate-enter"
+          className="max-w-3xl mx-auto text-center space-y-6 animate-enter"
           style={{ transform: `translateY(${scrollY * 0.1}px)` }}
         >
           <div className="glass-hero rounded-2xl p-8 backdrop-blur-sm">
-            <h1 className="font-display text-4xl sm:text-5xl leading-tight mb-4">
+            <h1 className="font-display text-4xl sm:text-6xl leading-tight mb-6">
               Real-time conversational coaching for runners
             </h1>
-            <p className="text-muted-foreground text-base sm:text-lg mb-6">
+            <p className="text-muted-foreground text-lg sm:text-xl mb-8 max-w-2xl mx-auto">
               Crato is a voice-first AI coach that adapts to your fatigue, sleep, and performance — giving short, specific cues as you run.
             </p>
-            <div className="flex flex-col sm:flex-row gap-3 mb-6">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
               <a href="#demo"><Button variant="hero" size="lg" className="hover-scale">Try the demo</Button></a>
               <a href="#waitlist"><Button variant="accent" size="lg" className="hover-scale">Join waitlist</Button></a>
             </div>
-            <ul className="text-sm text-muted-foreground grid grid-cols-2 gap-y-2 max-w-md">
-              <li className="flex items-center gap-2"><Mic className="text-accent" /> Voice-first cues</li>
-              <li className="flex items-center gap-2"><Watch className="text-accent" /> Wearable-aware</li>
-              <li className="flex items-center gap-2"><Camera className="text-accent" /> Quick form check</li>
-              <li className="flex items-center gap-2"><ShieldCheck className="text-accent" /> Privacy-first</li>
+            <ul className="text-sm text-muted-foreground grid grid-cols-2 sm:grid-cols-4 gap-y-3 max-w-2xl mx-auto">
+              <li className="flex items-center gap-2 justify-center"><Mic className="text-accent" /> Voice-first cues</li>
+              <li className="flex items-center gap-2 justify-center"><Watch className="text-accent" /> Wearable-aware</li>
+              <li className="flex items-center gap-2 justify-center"><Camera className="text-accent" /> Quick form check</li>
+              <li className="flex items-center gap-2 justify-center"><ShieldCheck className="text-accent" /> Privacy-first</li>
             </ul>
-          </div>
-        </div>
-        <div 
-          className="relative"
-          style={{ transform: `translateY(${scrollY * -0.1}px)` }}
-        >
-          <div className="relative glass rounded-2xl p-6 backdrop-blur-sm">
-            <div className="rounded-xl overflow-hidden shadow-elevated relative">
-              <img
-                src={heroImg}
-                alt="Crato AI running coach – minimalist runner with electric blue accents"
-                loading="eager"
-                decoding="async"
-                className="w-full h-auto"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-primary/10 to-transparent" />
-            </div>
           </div>
         </div>
       </div>
