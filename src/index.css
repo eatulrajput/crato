@@ -53,6 +53,11 @@ All colors MUST be HSL.
     --gradient-hero: linear-gradient(135deg, hsl(var(--accent)) 0%, hsl(var(--accent-strong)) 100%);
     --shadow-elevated: 0 10px 30px -12px hsl(var(--accent) / 0.25);
     --shadow-glow: 0 0 32px hsl(var(--accent) / 0.35);
+    
+    /* Glass Effects */
+    --glass-bg: rgba(255, 255, 255, 0.1);
+    --glass-border: rgba(255, 255, 255, 0.2);
+    --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   }
 
   .dark {
@@ -95,6 +100,11 @@ All colors MUST be HSL.
     --sidebar-ring: 217.2 91.2% 59.8%;
 
     --gradient-hero: linear-gradient(135deg, hsl(var(--accent)) 0%, hsl(var(--accent-strong)) 100%);
+    
+    /* Dark mode glass effects */
+    --glass-bg: rgba(0, 0, 0, 0.2);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
   }
 }
 
@@ -127,5 +137,69 @@ All colors MUST be HSL.
   }
   .bg-hero {
     background-image: var(--gradient-hero);
+  }
+  
+  /* Glass Effects */
+  .glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+  }
+  
+  .glass-hero {
+    background: linear-gradient(135deg, 
+      hsl(var(--background) / 0.8), 
+      hsl(var(--background) / 0.6)
+    );
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border: 1px solid hsl(var(--border) / 0.3);
+    box-shadow: 0 20px 60px hsl(var(--accent) / 0.1);
+  }
+  
+  /* Parallax Container */
+  .parallax-container {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .parallax-bg {
+    position: absolute;
+    top: -20%;
+    left: -10%;
+    width: 120%;
+    height: 140%;
+    background: linear-gradient(135deg, 
+      hsl(var(--accent) / 0.05), 
+      hsl(var(--primary) / 0.03)
+    );
+    border-radius: 50%;
+    filter: blur(60px);
+    animation: float 20s ease-in-out infinite;
+  }
+  
+  .parallax-orb {
+    position: absolute;
+    border-radius: 50%;
+    background: linear-gradient(135deg, 
+      hsl(var(--accent) / 0.2), 
+      hsl(var(--accent-strong) / 0.1)
+    );
+    filter: blur(40px);
+    animation: drift 15s ease-in-out infinite;
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0px) scale(1); }
+    50% { transform: translateY(-30px) scale(1.05); }
+  }
+  
+  @keyframes drift {
+    0%, 100% { transform: translateX(0px) translateY(0px); }
+    25% { transform: translateX(20px) translateY(-15px); }
+    50% { transform: translateX(-10px) translateY(-25px); }
+    75% { transform: translateX(-20px) translateY(-10px); }
   }
 }

@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/dialog";
 import { Bot, Camera, Mic, ShieldCheck, Watch, Zap } from "lucide-react";
 import { toast } from "sonner";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const Nav = () => (
   <header className="w-full border-b border-border/60 bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/70 sticky top-0 z-40">
@@ -32,41 +32,80 @@ const Nav = () => (
   </header>
 );
 
-const Hero = () => (
-  <section id="home" className="mx-auto max-w-6xl px-4 pt-10 pb-12 sm:pt-16 sm:pb-16">
-    <div className="grid md:grid-cols-2 gap-8 items-center">
-      <div className="space-y-6 animate-enter">
-        <h1 className="font-display text-4xl sm:text-5xl leading-tight">
-          Real-time conversational coaching for runners
-        </h1>
-        <p className="text-muted-foreground text-base sm:text-lg">
-          Crato is a voice-first AI coach that adapts to your fatigue, sleep, and performance — giving short, specific cues as you run.
-        </p>
-        <div className="flex flex-col sm:flex-row gap-3">
-          <a href="#demo"><Button variant="outline" size="lg" className="hover-scale">Try the demo</Button></a>
-          <a href="#waitlist"><Button variant="outline" size="lg" className="hover-scale">Join waitlist</Button></a>
+const Hero = () => {
+  const [scrollY, setScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => setScrollY(window.scrollY);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  return (
+    <section id="home" className="relative parallax-container mx-auto max-w-6xl px-4 pt-10 pb-12 sm:pt-16 sm:pb-16 min-h-[90vh] flex items-center">
+      {/* Parallax Background Elements */}
+      <div 
+        className="parallax-bg"
+        style={{ transform: `translateY(${scrollY * 0.3}px)` }}
+      />
+      <div 
+        className="parallax-orb w-32 h-32 top-20 right-10"
+        style={{ transform: `translateY(${scrollY * 0.5}px) translateX(${scrollY * 0.2}px)` }}
+      />
+      <div 
+        className="parallax-orb w-20 h-20 top-60 left-10"
+        style={{ transform: `translateY(${scrollY * -0.3}px) translateX(${scrollY * 0.1}px)` }}
+      />
+      <div 
+        className="parallax-orb w-16 h-16 bottom-40 right-32"
+        style={{ transform: `translateY(${scrollY * 0.4}px)` }}
+      />
+
+      <div className="relative z-10 grid md:grid-cols-2 gap-8 items-center w-full">
+        <div 
+          className="space-y-6 animate-enter"
+          style={{ transform: `translateY(${scrollY * 0.1}px)` }}
+        >
+          <div className="glass-hero rounded-2xl p-8 backdrop-blur-sm">
+            <h1 className="font-display text-4xl sm:text-5xl leading-tight mb-4">
+              Real-time conversational coaching for runners
+            </h1>
+            <p className="text-muted-foreground text-base sm:text-lg mb-6">
+              Crato is a voice-first AI coach that adapts to your fatigue, sleep, and performance — giving short, specific cues as you run.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3 mb-6">
+              <a href="#demo"><Button variant="hero" size="lg" className="hover-scale">Try the demo</Button></a>
+              <a href="#waitlist"><Button variant="accent" size="lg" className="hover-scale">Join waitlist</Button></a>
+            </div>
+            <ul className="text-sm text-muted-foreground grid grid-cols-2 gap-y-2 max-w-md">
+              <li className="flex items-center gap-2"><Mic className="text-accent" /> Voice-first cues</li>
+              <li className="flex items-center gap-2"><Watch className="text-accent" /> Wearable-aware</li>
+              <li className="flex items-center gap-2"><Camera className="text-accent" /> Quick form check</li>
+              <li className="flex items-center gap-2"><ShieldCheck className="text-accent" /> Privacy-first</li>
+            </ul>
+          </div>
         </div>
-        <ul className="text-sm text-muted-foreground grid grid-cols-2 gap-y-2 max-w-md">
-          <li className="flex items-center gap-2"><Mic className="text-accent" /> Voice-first cues</li>
-          <li className="flex items-center gap-2"><Watch className="text-accent" /> Wearable-aware</li>
-          <li className="flex items-center gap-2"><Camera className="text-accent" /> Quick form check</li>
-          <li className="flex items-center gap-2"><ShieldCheck className="text-accent" /> Privacy-first</li>
-        </ul>
-      </div>
-      <div className="relative">
-        <div className="rounded-xl overflow-hidden shadow-elevated">
-          <img
-            src={heroImg}
-            alt="Crato AI running coach – minimalist runner with electric blue accents"
-            loading="eager"
-            decoding="async"
-            className="w-full h-auto"
-          />
+        <div 
+          className="relative"
+          style={{ transform: `translateY(${scrollY * -0.1}px)` }}
+        >
+          <div className="relative glass rounded-2xl p-6 backdrop-blur-sm">
+            <div className="rounded-xl overflow-hidden shadow-elevated relative">
+              <img
+                src={heroImg}
+                alt="Crato AI running coach – minimalist runner with electric blue accents"
+                loading="eager"
+                decoding="async"
+                className="w-full h-auto"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-primary/10 to-transparent" />
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
-);
+    </section>
+  );
+};
 
 const HowItWorks = () => (
   <section id="how" className="mx-auto max-w-6xl px-4 py-12 sm:py-16">
